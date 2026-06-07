@@ -1,4 +1,4 @@
-To view <site: https://anle-tech.github.io/labblog/>
+To view site: https://anle-tech.github.io/labblog/
 
 Phantom by HTML5 UP
 html5up.net | @ajlkn
