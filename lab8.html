@@ -7,229 +7,235 @@
 <html>
 
 <head>
-	<title>Lab 8. Packet Tracer - Connect a Router to a LAN</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+  <title>Lab 8. Packet Tracer - Connect a Router to a LAN</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
 </head>
 
 <body class="is-preload">
-	<!-- Wrapper -->
-	<div id="wrapper">
+  <!-- Wrapper -->
+  <div id="wrapper">
 
-		<!-- Header -->
-		<header id="header">
-			<div class="inner">
+    <!-- Header -->
+    <header id="header">
+      <div class="inner">
 
-				<!-- Logo -->
-				<a href="index.html" class="logo">
-					<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
-				</a>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
+        </a>
 
-				<!-- Nav -->
-				<nav>
-					<ul>
-						<li><a href="#menu">Menu</a></li>
-					</ul>
-				</nav>
+        <!-- Nav -->
+        <nav>
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+          </ul>
+        </nav>
 
-			</div>
-		</header>
+      </div>
+    </header>
 
-		<!-- Menu -->
-		<nav id="menu">
-			<h2>Menu</h2>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="lab8.html">Lab 8</a></li>
-				<li><a href="elements.html">Elements</a></li>
-			</ul>
-		</nav>
+    <!-- Menu -->
+    <nav id="menu">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lab8.html">Lab 8</a></li>
+        <li><a href="elements.html">Elements</a></li>
+      </ul>
+    </nav>
 
-		<!-- Main -->
-		<div id="main">
-			<div class="inner">
-				<h1>Lab 8. Packet Tracer - Connect a Router to a LAN</h1>
-				<span class="image main"><img src="images/lab8-pic1.png" alt="" /></span>
-				<h2>By An Le</h2>
-				<p>In lab 8 - Connect a Router to a LAN, we will check the current state of the router. Use the provided
-					addressing table to configure the router Ethernet interfaces. And use the commands to verify and
-					test the configuration.</p>
-				<h3>Part 1: Display Router Information</h3>
-				<h4>Step 1 - Display interface information on R1</h4>
-				<p>To access the routers, navigate to the <b>CLI</b>, and access using the console password,
-					<b>cisco</b>. And the privileged EXEC password is <b>class</b>.
-				</p>
-				<p>To display the statistic for all interfaces configured on a router, use command
-					<code>show interfaces</code>.</br>
-					To display just for Serial 0/0/0 interface only, use command
-					<code>show interfaces serial 0/0/0</code>. The result should show something like this:
-				</p>
-				<pre><code>Serial0/0/0 is up, line protocol is up (connected)
-  Hardware is HD64570
-  Internet address is 209.165.200.225/30
-  MTU 1500 bytes, BW 1544 Kbit, DLY 20000 usec,
-     reliability 255/255, txload 1/255, rxload 1/255
-  Encapsulation HDLC, loopback not set, keepalive set (10 sec)
-  Last input never, output never, output hang never
-  Last clearing of "show interface" counters never
-  Input queue: 0/75/0 (size/max/drops); Total output drops: 0
-  Queueing strategy: weighted fair
-  Output queue: 0/1000/64/0 (size/max total/threshold/drops)
-     Conversations  0/0/256 (active/max active/max total)
-     Reserved Conversations 0/0 (allocated/max allocated)
-     Available Bandwidth 1158 kilobits/sec
-  5 minute input rate 147 bits/sec, 0 packets/sec
-  5 minute output rate 54 bits/sec, 0 packets/sec
-     250 packets input, 15728 bytes, 0 no buffer
-     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
-     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
-     82 packets output, 5540 bytes, 0 underruns
-     0 output errors, 0 collisions, 0 interface resets
-     0 output buffer failures, 0 output buffers swapped out
-     0 carrier transitions
-     DCD=up  DSR=up  DTR=up  RTS=up  CTS=up</code></pre>
-				<p>From the displayed result, we can point out some information here. Like the IP address configured on
-					R1 is provided on line 3 Internet address is <code>209.165.200.255/30</code> and bandwidth on line 4
-					MTU 1500 bytes, BW <code>1544 Kbit</code>, DLY 20000 usec.
-				<p>
-				<p>
-					Follow a similar process, we can point out some similar information for GigabitEthernet 0/0
-					interface:</br>
-					IP address is <code>none</code>, as we will configure the later on. MAC address is
-					<code>000d.bd6c.7d01</code>. Bandwidth is <code>100000</code> Kbit
-				</p>
-				<h4>Step 2: Display a summary list of the interfaces on R1</h4>
-				<p>To display a brief summary of the current interfaces, interface status, and the IP addresses assigned
-					to them, use command <code>show ip interfaces brief</code>.</br>
-					Using this same command on R1 and R2, we can see that there are
-					<code>2 serial interfaces on both R1 and R2</code>,
-					<code>6 Ethernet interfaces on R1, and 2 Ethernet interface on R2</code>. They both have
-					<code>2 Gigabit Ethernet, but R1 also have an additional 4 Fast Ethernet that is unused</code>.
-				</p>
-				<h4>Step 3: Display the routing table on R1</h4>
-				<p>To display the routing table on R1, use command <code>show ip route</code>. We will see that there is
-					<code>1 connected route</code>, which will route through <code>209.165.200.224/30</code>. These
-					route is essential for device in the network to communicate efficiently, as such,
-					<code>any packet that is destined for a network that is not listed in the routing table will be dropped</code>.
-				</p>
-				<h3>Part 2: Configure Router Interfaces</h3>
-				<div class="col-12"><span class="image fit"><img src="images/lab8-pic2.png" alt="" /></span></div>
-				<h4>Step 1: Configure the GigabitEthernet 0/0 on R1</h4>
-				<p>To configure the GigabitEthernet 0/0 interface on R1, we follow the instruction but first use the
-					command: <b>configure terminal</b>, to enter the configuration mode.</br>
-					Then, follow the step by step instruction to configure the IP address for GigabitEthernet 0/0 as
-					well as the description of the interface.</p>
-				<h4>Step 2: Configure the remaining Gigabit Ethernet Interfaces on R1 and R2</h4>
-				<p>We follow the same process for the rest of GigabitEthernet Interfaces on R1 and R2 using the
-					information provided in the table.</br>
-					<code>interface gigabitethernet */*</code> - select an interface. </br>
-					<code>ip address ***.***.***.*** 255.255.255.0</code> - use the table to put the IP address.</br>
-					<code>no shutdown</code> - to enable the interfaces.</br>
-					<code>description “***”</code> - to put a description that indicates the device to which it is
-					connected.</br>
-					Do this with all the interface, and everything is connected.
-				</p>
-				<h4>Step 3: Back up the configurations to NVRAM</h4>
-				<p>In order to save it the NVRAM, we need to use command
-					<code>copy running-config startup-config</code>.</p>
-				<h3>Part 3: Verify the Configuration</h3>
-				<h4>Step 1: Use verification commands to check your interface configurations</h4>
-				<p>After all the step in part 2, we can verify both by using show ip interface brief on R1, and R2, we
-					will see something like this:</p>
-				<pre><code>Interface              IP-Address      OK? Method Status                Protocol 
-GigabitEthernet0/0     192.168.10.1    YES manual up                    up 
-GigabitEthernet0/1     192.168.11.1    YES manual up                    up 
-Serial0/0/0            209.165.200.225 YES manual up                    up 
-Serial0/0/1            unassigned      YES unset  administratively down down 
-FastEthernet0/1/0      unassigned      YES unset  administratively down down 
-FastEthernet0/1/1      unassigned      YES unset  administratively down down 
-FastEthernet0/1/2      unassigned      YES unset  administratively down down 
-FastEthernet0/1/3      unassigned      YES unset  administratively down down 
-Vlan1                  unassigned      YES unset  administratively down down</code></pre>
-				<p>Do this for both R1 and R2, we can see see that there is <code>3 IP addresses</code> that is in the
-					up and up state. And because it is a brief we will not see the subnet mask. To verify the
-					<code>subnet mask</code>, we can use <code>show ip interface</code>.</p>
-				<p>The same can be checked on show ip route:</p>
-				<pre><code>     10.0.0.0/24 is subnetted, 2 subnets
-O       10.1.1.0/24 [110/65] via 209.165.200.226, 01:14:52, Serial0/0/0
-O       10.1.2.0/24 [110/65] via 209.165.200.226, 01:14:52, Serial0/0/0
-     192.168.10.0/24 is variably subnetted, 2 subnets, 2 masks
-C       192.168.10.0/24 is directly connected, GigabitEthernet0/0
-L       192.168.10.1/32 is directly connected, GigabitEthernet0/0
-     192.168.11.0/24 is variably subnetted, 2 subnets, 2 masks
-C       192.168.11.0/24 is directly connected, GigabitEthernet0/1
-L       192.168.11.1/32 is directly connected, GigabitEthernet0/1
-     209.165.200.0/24 is variably subnetted, 2 subnets, 2 masks
-C       209.165.200.224/30 is directly connected, Serial0/0/0
-L       209.165.200.225/32 is directly connected, Serial0/0/0</code></pre>
-				<p>We can identify <code>3 connected routes</code> and <code>2 OSPF routes</code> on each router. And
-					because the router knows all the routes in the network, then the number of connected routes and
-					dynamically learned routes (OSPF) should be equal, which is <code>5</code>.</p>
-<h4>Step 2: Test end-to-end connectivity across the network</h4>
-<p>After all of it, we should be able to use ping command to to different devices in the network.</p>
-<div class="col-12"><span class="image fit"><img src="images/lab8-pic3.png" alt="" /></span></div>
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <h1>Lab 8. Packet Tracer - Connect a Router to a LAN</h1>
+        <span class="image main"><img src="images/lab8-pic1.png" alt="" /></span>
+        <h2>By An Le</h2>
+        <p>In lab 8 - Connect a Router to a LAN, we will check the current state of the router. Use the provided
+          addressing table to configure the router Ethernet interfaces. And use the commands to verify and
+          test the configuration.</p>
+        <h3>Part 1: Display Router Information</h3>
+        <h4>Step 1 - Display interface information on R1</h4>
+        <p>To access the routers, navigate to the <b>CLI</b>, and access using the console password,
+          <b>cisco</b>. And the privileged EXEC password is <b>class</b>.
+        </p>
+        <p>To display the statistic for all interfaces configured on a router, use command
+          <code>show interfaces</code>.</br>
+          To display just for Serial 0/0/0 interface only, use command
+          <code>show interfaces serial 0/0/0</code>. The result should show something like this:
+        </p>
+        <pre><code>Serial0/0/0 is up, line protocol is up (connected)
+            Hardware is HD64570
+            Internet address is 209.165.200.225/30
+            MTU 1500 bytes, BW 1544 Kbit, DLY 20000 usec,
+            reliability 255/255, txload 1/255, rxload 1/255
+            Encapsulation HDLC, loopback not set, keepalive set (10 sec)
+            Last input never, output never, output hang never
+            Last clearing of "show interface" counters never
+            Input queue: 0/75/0 (size/max/drops); Total output drops: 0
+            Queueing strategy: weighted fair
+            Output queue: 0/1000/64/0 (size/max total/threshold/drops)
+            Conversations 0/0/256 (active/max active/max total)
+            Reserved Conversations 0/0 (allocated/max allocated)
+            Available Bandwidth 1158 kilobits/sec
+            5 minute input rate 147 bits/sec, 0 packets/sec
+            5 minute output rate 54 bits/sec, 0 packets/sec
+            250 packets input, 15728 bytes, 0 no buffer
+            Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+            0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+            82 packets output, 5540 bytes, 0 underruns
+            0 output errors, 0 collisions, 0 interface resets
+            0 output buffer failures, 0 output buffers swapped out
+            0 carrier transitions
+            DCD=up DSR=up DTR=up RTS=up CTS=up</code></pre>
+        <p>From the displayed result, we can point out some information here. Like the IP address configured on
+          R1 is provided on line 3 Internet address is <code>209.165.200.255/30</code> and bandwidth on line 4
+          MTU 1500 bytes, BW <code>1544 Kbit</code>, DLY 20000 usec.
+        <p>
+        <p>
+          Follow a similar process, we can point out some similar information for GigabitEthernet 0/0
+          interface:</br>
+          IP address is <code>none</code>, as we will configure the later on. MAC address is
+          <code>000d.bd6c.7d01</code>. Bandwidth is <code>100000</code> Kbit
+        </p>
+        <h4>Step 2: Display a summary list of the interfaces on R1</h4>
+        <p>To display a brief summary of the current interfaces, interface status, and the IP addresses assigned
+          to them, use command <code>show ip interfaces brief</code>.</br>
+          Using this same command on R1 and R2, we can see that there are
+          <code>2 serial interfaces on both R1 and R2</code>,
+          <code>6 Ethernet interfaces on R1, and 2 Ethernet interface on R2</code>. They both have
+          <code>2 Gigabit Ethernet, but R1 also have an additional 4 Fast Ethernet that is unused</code>.
+        </p>
+        <h4>Step 3: Display the routing table on R1</h4>
+        <p>To display the routing table on R1, use command <code>show ip route</code>. We will see that there is
+          <code>1 connected route</code>, which will route through <code>209.165.200.224/30</code>. These
+          route is essential for device in the network to communicate efficiently, as such,
+          <code>any packet that is destined for a network that is not listed in the routing table will be
+            dropped</code>.
+        </p>
+        <h3>Part 2: Configure Router Interfaces</h3>
+        <div class="col-12"><span class="image fit"><img src="images/lab8-pic2.png" alt="" /></span></div>
+        <h4>Step 1: Configure the GigabitEthernet 0/0 on R1</h4>
+        <p>To configure the GigabitEthernet 0/0 interface on R1, we follow the instruction but first use the
+          command: <b>configure terminal</b>, to enter the configuration mode.</br>
+          Then, follow the step by step instruction to configure the IP address for GigabitEthernet 0/0 as
+          well as the description of the interface.</p>
+        <h4>Step 2: Configure the remaining Gigabit Ethernet Interfaces on R1 and R2</h4>
+        <p>We follow the same process for the rest of GigabitEthernet Interfaces on R1 and R2 using the
+          information provided in the table.</br>
+          <code>interface gigabitethernet */*</code> - select an interface. </br>
+          <code>ip address ***.***.***.*** 255.255.255.0</code> - use the table to put the IP address.</br>
+          <code>no shutdown</code> - to enable the interfaces.</br>
+          <code>description “***”</code> - to put a description that indicates the device to which it is
+          connected.</br>
+          Do this with all the interface, and everything is connected.
+        </p>
+        <h4>Step 3: Back up the configurations to NVRAM</h4>
+        <p>In order to save it the NVRAM, we need to use command
+          <code>copy running-config startup-config</code>.
+        </p>
+        <h3>Part 3: Verify the Configuration</h3>
+        <h4>Step 1: Use verification commands to check your interface configurations</h4>
+        <p>After all the step in part 2, we can verify both by using show ip interface brief on R1, and R2, we
+          will see something like this:</p>
+        <pre><code>Interface IP-Address OK? Method Status Protocol
+            GigabitEthernet0/0 192.168.10.1 YES manual up up
+            GigabitEthernet0/1 192.168.11.1 YES manual up up
+            Serial0/0/0 209.165.200.225 YES manual up up
+            Serial0/0/1 unassigned YES unset administratively down down
+            FastEthernet0/1/0 unassigned YES unset administratively down down
+            FastEthernet0/1/1 unassigned YES unset administratively down down
+            FastEthernet0/1/2 unassigned YES unset administratively down down
+            FastEthernet0/1/3 unassigned YES unset administratively down down
+            Vlan1 unassigned YES unset administratively down down</code></pre>
+        <p>Do this for both R1 and R2, we can see see that there is <code>3 IP addresses</code> that is in the
+          up and up state. And because it is a brief we will not see the subnet mask. To verify the
+          <code>subnet mask</code>, we can use <code>show ip interface</code>.
+        </p>
+        <p>The same can be checked on show ip route:</p>
+        <pre><code> 10.0.0.0/24 is subnetted, 2 subnets
+            O 10.1.1.0/24 [110/65] via 209.165.200.226, 01:14:52, Serial0/0/0
+            O 10.1.2.0/24 [110/65] via 209.165.200.226, 01:14:52, Serial0/0/0
+            192.168.10.0/24 is variably subnetted, 2 subnets, 2 masks
+            C 192.168.10.0/24 is directly connected, GigabitEthernet0/0
+            L 192.168.10.1/32 is directly connected, GigabitEthernet0/0
+            192.168.11.0/24 is variably subnetted, 2 subnets, 2 masks
+            C 192.168.11.0/24 is directly connected, GigabitEthernet0/1
+            L 192.168.11.1/32 is directly connected, GigabitEthernet0/1
+            209.165.200.0/24 is variably subnetted, 2 subnets, 2 masks
+            C 209.165.200.224/30 is directly connected, Serial0/0/0
+            L 209.165.200.225/32 is directly connected, Serial0/0/0</code></pre>
+        <p>We can identify <code>3 connected routes</code> and <code>2 OSPF routes</code> on each router. And
+          because the router knows all the routes in the network, then the number of connected routes and
+          dynamically learned routes (OSPF) should be equal, which is <code>5</code>.</p>
+        <h4>Step 2: Test end-to-end connectivity across the network</h4>
+        <p>After all of it, we should be able to use ping command to to different devices in the network.</p>
+        <div class="col-12"><span class="image fit"><img src="images/lab8-pic3.png" alt="" /></span></div>
+        <p>Overall the lab activity is very straight forward and does utilyze previous lab knowledge to help with this
+          lab. But even so, the lab also provide a lot of hint and instruction on how to complete the activity. This lab
+          is one of the easier lab compare to lab 2 where the activity assume that you know what to do before hand. So
+          it is probably a good idea to complete any other lab before lab 2.</p>
+      </div>
+    </div>
 
-			</div>
-		</div>
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="inner">
+        <section>
+          <h2>Get in touch</h2>
+          <form method="post" action="#">
+            <div class="fields">
+              <div class="field half">
+                <input type="text" name="name" id="name" placeholder="Name" />
+              </div>
+              <div class="field half">
+                <input type="email" name="email" id="email" placeholder="Email" />
+              </div>
+              <div class="field">
+                <textarea name="message" id="message" placeholder="Message"></textarea>
+              </div>
+            </div>
+            <ul class="actions">
+              <li><input type="submit" value="Send" class="primary" /></li>
+            </ul>
+          </form>
+        </section>
+        <section>
+          <h2>Follow</h2>
+          <ul class="icons">
+            <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a>
+            </li>
+            <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a>
+            </li>
+            <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a>
+            </li>
+            <li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a>
+            </li>
+            <li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+            <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+            <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+          </ul>
+        </section>
+        <ul class="copyright">
+          <li>&copy; Untitled. All rights reserved</li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </div>
+    </footer>
 
-		<!-- Footer -->
-		<footer id="footer">
-			<div class="inner">
-				<section>
-					<h2>Get in touch</h2>
-					<form method="post" action="#">
-						<div class="fields">
-							<div class="field half">
-								<input type="text" name="name" id="name" placeholder="Name" />
-							</div>
-							<div class="field half">
-								<input type="email" name="email" id="email" placeholder="Email" />
-							</div>
-							<div class="field">
-								<textarea name="message" id="message" placeholder="Message"></textarea>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" value="Send" class="primary" /></li>
-						</ul>
-					</form>
-				</section>
-				<section>
-					<h2>Follow</h2>
-					<ul class="icons">
-						<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a>
-						</li>
-						<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a>
-						</li>
-						<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a>
-						</li>
-						<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a>
-						</li>
-						<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
-						<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
-						<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-				</section>
-				<ul class="copyright">
-					<li>&copy; Untitled. All rights reserved</li>
-					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
-			</div>
-		</footer>
+  </div>
 
-	</div>
-
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 
