@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+  <title>Lab 9. Packet Tracer - Connect the Physical Layer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
+</head>
+
+<body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+      <div class="inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
+        </a>
+
+        <!-- Nav -->
+        <nav>
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lab8.html">Lab 8</a></li>
+        <li><a href="lab9.html">Lab 8</a></li>
+        <li><a href="elements.html">Elements</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <h1>Lab 9. Packet Tracer - Connect the Physical Layer</h1>
+        <span class="image main"><img src="images/lab9-pic5.png" alt="" /></span>
+        <h2>By An Le</h2>
+        <p>In Lab 9 - Connct the Physical Layer, we will explore different option on how to connect on internetworking
+          devices. We also determine which option to use when connecting multiple devices.</p>
+        <h3>Part 1: Identify Physical Characteristics of Internetworking Devices</h3>
+        <h4>Step 1 - Identify the management ports of a Cisco router</h4>
+        <div class="col-12"><span class="image fit"><img src="images/lab9-pic1.jpg" alt="" /></span></div>
+        <p>Follow the instruction, there should be an image of the Cisco router to identify the port. The zoom in
+          function is quite limited but with the name of the router "Cisco 1941 Series", we can see that the ports
+          available are <b>AUX and Console Ports</b>.</p>
+        <h4>Step 2 - Identify the LAN and WAN interfaces of a Cisco router</h4>
+        <p>Next step, follow the instruction to identify the interfaces using command <code>show ip interface
+            brief</code>, we can identify a total of <b>4</b> with <b> 2 Serial and 2 Gigabit Ethernet</b>; With the
+          default bandwidth of GigabitEthernet 0/0 is <b>100000 Kbit</b> and Serial 0/0/0 is <b>1544 Kbit</b>.</p>
+        <h4>Step 3 - Identify module expansion slots</h4>
+        <p>Using the physical tab, we can identify the number of the expansion slots on the router and the switch. In
+          this case, <b>1</b> for the East Router and <b>5</b> for the Switch 2.</p>
+        <h3>Part 2: Select Correct Modules for Connectivity</h3>
+        <h4>Step 1 - Determine which modules provide the required connectivity</h4>
+        <p>On the physical tab, on the right side of the router image, there is a list of modules that can be installed
+          to the router. Examine each of the option available, we can see that the <b>HWIC-4ESW can provide four
+            swiching ports</b> to connect up to <b>4 hosts</b>, which is what we need to connect to the 3 PCs.</br>
+          Follow the same process, we can identify the module to provide Gigabit optical connection is
+          <b>PT-SWITCH-NM-1FGE</b>.
+        </p>
+        <h4>Step 2 - Add the correct modules and power up devices</h4>
+        <p>By select and drag the modules to the empty slot on the physical tab, we can install a new module for our
+          need (but we have to turn it off first). After that, we can turn it on again and verify that the installed
+          module show up correctly with <code>show ip interface brief</code>. Follow the same procedure on the switch 2,
+          we can see that a new <b>GigabitEthernet5/1</b> show up.</p>
+        <h3>Part 3: Connect Devices</h3>
+        <p>In this step, it is prettly straight forward. By consulting the provided chart, we can quickly select the
+          connect the correct cables, ports and devices.</p>
+        <div class="col-12"><span class="image fit"><img src="images/lab9-pic4.png" alt="" /></span></div>
+        <h3>Part 4: Check Connectivity</h3>
+        <h4>Step 1 - Check the interfaces status on East</h4>
+        <p>If we follow all the step correctly, the result should be matching with what was provided.</p>
+        <pre><code>
+            Interface           IP-Address OK? Method Status Protocol
+            GigabitEthernet0/0  172.30.1.1 YES manual up up
+            GigabitEthernet0/1  172.31.1.1 YES manual up up
+            Serial0/0/0         10.10.10.1 YES manual up up
+            Serial0/0/1         unassigned YES unset down down
+            FastEthernet0/1/0   unassigned YES unset up up
+            FastEthernet0/1/1   unassigned YES unset up up
+            FastEthernet0/1/2   unassigned YES unset up up
+            FastEthernet0/1/3   unassigned YES unset up down
+            Vlan1               172.29.1.1 YES manual up up</code></pre>
+        <h4>Step 2 - Conncect the wireless devices, Laptop and TablitPC</h4>
+        <p>Going to the config tab on the Laptop, change the wireless status to On and go to the web browser. Follow the
+          same step with TabletPC, if all is correct, we should be able to connect to www.cisco.srv and the following
+          page should show up</p>
+        <div class="col-12"><span class="image fit"><img src="images/lab9-pic3.png" alt="" /></span></div>
+        <h4>Step 3 - Change the access method of the TabletPC</h4>
+        <p>To change access method on TabletPC, un-check wireless status, change to 3G/4G Cell1 interfaces, and check
+          the status to On. The result should be identical to accessing the access point and allow us to connect to the
+          Cisco website, with only different is that the connection is going though cell tower.</p>
+        <h4>Step 4 - Check connectivity of other PCs</h4>
+        <p>We can go though the PC and check the conncetion, but if all is correct, it we should be able to visit the
+          website and ping each other.</br>This lab is prettly straigh forward, follow the instruction and setting
+          should get everything done pretty quickly. The only obstacle is probably the image and zoom function on the
+          physical tab.</p>
+        <div class="col-12"><span class="image fit"><img src="images/lab9-pic2.png" alt="" /></span></div>
+        <!-- Footer -->
+        <footer id="footer">
+          <div class="inner">
+            <section>
+              <h2>Get in touch</h2>
+              <form method="post" action="#">
+                <div class="fields">
+                  <div class="field half">
+                    <input type="text" name="name" id="name" placeholder="Name" />
+                  </div>
+                  <div class="field half">
+                    <input type="email" name="email" id="email" placeholder="Email" />
+                  </div>
+                  <div class="field">
+                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                  </div>
+                </div>
+                <ul class="actions">
+                  <li><input type="submit" value="Send" class="primary" /></li>
+                </ul>
+              </form>
+            </section>
+            <section>
+              <h2>Follow</h2>
+              <ul class="icons">
+                <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+                <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+                <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+              </ul>
+            </section>
+            <ul class="copyright">
+              <li>&copy; Untitled. All rights reserved</li>
+              <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </div>
+        </footer>
+
+      </div>
+
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
