@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+  <title>Lab 22 - Packet Tracer - Troubleshoot Default Gateway Issues</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
+</head>
+
+<body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+      <div class="inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
+        </a>
+
+        <!-- Nav -->
+        <nav>
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lab8.html">Lab 8</a></li>
+        <li><a href="lab9.html">Lab 9</a></li>
+        <li><a href="lab15.html">Lab 15</a></li>
+        <li><a href="lab18.html">Lab 18</a></li>
+        <li><a href="lab22.html">Lab 22</a></li>
+        <li><a href="elements.html">Elements</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+
+        <h1>Lab 22 - Packet Tracer - Troubleshoot Default Gateway Issues</h1>
+        <h2>By An Le</h2>
+        <span class="image main"><img src="images/lab22-1.png" alt="" /></span>
+        <p>In lab 22, we will then verify the network documentation by testing
+          end-to-end connectivity and troubleshooting issues.</p>
+        <h2>Part 1: Verify Network Documentation and Isolate Problems</h2>
+        <h3>Step 1: Verify the network documentation and isolate any problems.</h3>
+        <p>First, we need to complete the Addressing Table by filling out the missing
+          default gateway.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Interface</th>
+              <th>IP Address</th>
+              <th>Subnet Mask</th>
+              <th>Default Gateway</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>R1</td>
+              <td>G0/0</td>
+              <td>192.168.10.1</td>
+              <td>255.255.255.0</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>R1</td>
+              <td>G0/1</td>
+              <td>192.168.11.1</td>
+              <td>255.255.255.0</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>S1</td>
+              <td>VLAN 1</td>
+              <td>192.168.10.2</td>
+              <td>255.255.255.0</td>
+              <td><strong>192.168.10.1</strong></td>
+            </tr>
+            <tr>
+              <td>S2</td>
+              <td>VLAN 2</td>
+              <td>192.168.11.2</td>
+              <td>255.255.255.0</td>
+              <td><strong>192.168.11.1</strong></td>
+            </tr>
+            <tr>
+              <td>PC1</td>
+              <td>NIC</td>
+              <td>192.168.10.10</td>
+              <td>255.255.255.0</td>
+              <td><strong>192.168.10.1</strong></td>
+            </tr>
+            <tr>
+              <td>PC2</td>
+              <td>NIC</td>
+              <td>192.168.10.11</td>
+              <td>255.255.255.0</td>
+              <td><strong>192.168.10.1</strong></td>
+            </tr>
+            <tr>
+              <td>PC3</td>
+              <td>NIC</td>
+              <td>192.168.11.10</td>
+              <td>255.255.255.0</td>
+              <td><strong>192.168.11.1</strong></td>
+            </tr>
+            <tr>
+              <td>PC4</td>
+              <td>NIC</td>
+              <td>192.168.11.11</td>
+              <td>255.255.255.0</td>
+              <td><strong>192.168.11.1</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Step 2: Determine an appropriate solution for the problem.</h3>
+        <p>We will then test end-to-end connectivity to make sure that the network is
+          fully connected. By going through each device and check for each devices&#39;
+          configuration, we can identify problems and possible solution to resolve.</p>
+        <figure>
+          <img src="images/lab22-2.png" alt="" />
+          <figcaption>Troubleshoot with ping and ipconfig.</figcaption>
+        </figure>
+        <h2>Part 2: Implement, Verify, and Document Solutions</h2>
+        <p>We will go through each device, and test.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Test</th>
+              <th>Successful?</th>
+              <th>Issues</th>
+              <th>Solution</th>
+              <th>Verified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PC1 to PC2</td>
+              <td>No</td>
+              <td>IP address on PC1</td>
+              <td>Change PC1 IP Address</td>
+              <td>Checked</td>
+            </tr>
+          </tbody>
+        </table>
+        <figure>
+          <img src="images/lab22-3.png" alt="" />
+          <figcaption>Change PC1 IP.</figcaption>
+        </figure>
+        <table>
+          <thead>
+            <tr>
+              <th>Test</th>
+              <th>Successful?</th>
+              <th>Issues</th>
+              <th>Solution</th>
+              <th>Verified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PC1 to S1</td>
+              <td>No</td>
+              <td>No default gateway</td>
+              <td>Add default gateway to S1</td>
+              <td>Checked</td>
+            </tr>
+          </tbody>
+        </table>
+        <figure>
+          <img src="images/lab22-4.png" alt="" />
+          <figcaption>Add S1 default gateway.</figcaption>
+        </figure>
+        <table>
+          <thead>
+            <tr>
+              <th>Test</th>
+              <th>Successful?</th>
+              <th>Issues</th>
+              <th>Solution</th>
+              <th>Verified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PC1 to R1</td>
+              <td>Yes</td>
+              <td></td>
+              <td></td>
+              <td>Checked</td>
+            </tr>
+          </tbody>
+        </table>
+        <figure>
+          <img src="images/lab22-7.png" alt="" />
+          <figcaption>Successfully ping R1.</figcaption>
+        </figure>
+        <table>
+          <thead>
+            <tr>
+              <th>Test</th>
+              <th>Successful?</th>
+              <th>Issues</th>
+              <th>Solution</th>
+              <th>Verified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PC1 to S2</td>
+              <td>No</td>
+              <td>No ip address</td>
+              <td>Add IP to S2</td>
+              <td>Checked</td>
+            </tr>
+          </tbody>
+        </table>
+        <figure>
+          <img src="images/lab22-6.png" alt="" />
+          <figcaption>Add S2 ip and subnet mask.</figcaption>
+        </figure>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Test</th>
+              <th>Successful?</th>
+              <th>Issues</th>
+              <th>Solution</th>
+              <th>Verified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PC1 to PC4</td>
+              <td>No</td>
+              <td>Wrong default gateway</td>
+              <td>Change default gateway to S1</td>
+              <td>Checked</td>
+            </tr>
+          </tbody>
+        </table>
+        <figure>
+          <img src="images/lab22-5.png" alt="" />
+          <figcaption>Change PC4 default gateway.</figcaption>
+        </figure>
+
+        <p>After all these step, PC1 should be able to ping all other devices in the
+          network.</p>
+        <img src="images/lab22-8.png" alt="" />
+        <img src="images/lab22-9.png" alt="" />
+        <!-- Footer -->
+        <footer id="footer">
+          <div class="inner">
+            <section>
+              <h2>Get in touch</h2>
+              <form method="post" action="#">
+                <div class="fields">
+                  <div class="field half">
+                    <input type="text" name="name" id="name" placeholder="Name" />
+                  </div>
+                  <div class="field half">
+                    <input type="email" name="email" id="email" placeholder="Email" />
+                  </div>
+                  <div class="field">
+                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                  </div>
+                </div>
+                <ul class="actions">
+                  <li><input type="submit" value="Send" class="primary" /></li>
+                </ul>
+              </form>
+            </section>
+            <section>
+              <h2>Follow</h2>
+              <ul class="icons">
+                <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+                <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+                <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+              </ul>
+            </section>
+            <ul class="copyright">
+              <li>&copy; Untitled. All rights reserved</li>
+              <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </div>
+        </footer>
+
+      </div>
+
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
