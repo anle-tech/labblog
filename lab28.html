@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+  <title>Lab 22 - Packet Tracer - Design and Implement a VLSM Addressing Scheme</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
+</head>
+
+<body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+      <div class="inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
+        </a>
+
+        <!-- Nav -->
+        <nav>
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lab8.html">Lab 8</a></li>
+        <li><a href="lab9.html">Lab 9</a></li>
+        <li><a href="lab15.html">Lab 15</a></li>
+        <li><a href="lab18.html">Lab 18</a></li>
+        <li><a href="lab22.html">Lab 22</a></li>
+        <li><a href="lab28.html">Lab 28</a></li>
+        <li><a href="lab28.html">Lab 28</a></li>
+        <li><a href="elements.html">Elements</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <h1>Lab 28 Design and Implement a VLSM Addressing Scheme</h1>
+        <h2>By An Le</h2>
+        <!-- todo Image -->
+        <span class="image main"><img src="images/lab28-1.png" alt="" /></span>
+        <p>In lab 28, we will design a VLSM addressing scheme from a given /24 network,
+          we will assign subnets and addressing, configure devices and verify
+          connectivity.</p>
+        <h2>Part 1: Examine the Network Requirements</h2>
+        <h3>Step 1: Determine the number of subnets needed.</h3>
+        <p>Based on the information given, we will need 5 subnets.</p>
+        <h3>Step 2: Determine the subnet mask information for each subnet.</h3>
+        <p>Each subnet must provide enough hosts to cover network and broadcast address
+          as well as host IP address requirement.</p>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Subnet Mask</th>
+              <th>Useable</th>
+              <th>Requirement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Room-114</td>
+              <td>255.255.255.240</td>
+              <td>14</td>
+              <td>14</td>
+            </tr>
+            <tr>
+              <td>Room-279</td>
+              <td>255.255.255.224</td>
+              <td>30</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td>Room-312</td>
+              <td>255.255.255.255.248</td>
+              <td>6</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>Room-407</td>
+              <td>255.255.255.192</td>
+              <td>62</td>
+              <td>60</td>
+            </tr>
+            <tr>
+              <td>To connect Branch1 and Branch2, we only need 255.255.255.252 /30.</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Part 2: Design the VLSM Addressing Scheme</h2>
+        <h3>Step 1: Divide the 10.11.48.0/24 network based on the number of hosts per
+          subnet | Step 2: Document the VLSM subnets | Step 3: Document the addressing
+          scheme.</h3>
+        <p>From the required block sizes we sort it in descending order, from Room-407
+          -&gt; Room-279 -&gt; Room-114 -&gt; Rom-312 -&gt; Branch connection.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Subnet Description</th>
+              <th># Hosts Needed</th>
+              <th>Network Addr/CIDR</th>
+              <th>1st Usable Host Addr</th>
+              <th>Broadcast Addr</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LAN-D</td>
+              <td>60</td>
+              <td>10.11.48.0/26</td>
+              <td>10.11.48.1</td>
+              <td>10.11.48.63</td>
+            </tr>
+            <tr>
+              <td>LAN-B</td>
+              <td>30</td>
+              <td>10.11.48.64/27</td>
+              <td>10.11.48.65</td>
+              <td>10.11.48.95</td>
+            </tr>
+            <tr>
+              <td>LAN-A</td>
+              <td>14</td>
+              <td>10.11.48.96/28</td>
+              <td>10.11.48.97</td>
+              <td>10.11.48.111</td>
+            </tr>
+            <tr>
+              <td>LAN-C</td>
+              <td>6</td>
+              <td>10.11.48.112/29</td>
+              <td>10.11.48.113</td>
+              <td>10.11.48.119</td>
+            </tr>
+            <tr>
+              <td>WAN Link</td>
+              <td>2</td>
+              <td>10.11.48.120/30</td>
+              <td>10.11.48.121</td>
+              <td>10.11.48.123</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Part 3: Assign IP Addresses to Devices and Verify Connectivity</h2>
+        <p>We can now fill out the addressing table and start configurating the network.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Interface</th>
+              <th>IP Address</th>
+              <th>Subnet Mask</th>
+              <th>Default Gateway</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Branch1</td>
+              <td>G0/0</td>
+              <td>10.11.48.97</td>
+              <td>255.255.255.240</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>Branch1</td>
+              <td>G0/1</td>
+              <td>10.11.48.65</td>
+              <td>255.255.255.224</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>Branch1</td>
+              <td>S0/0/0</td>
+              <td>10.11.48.121</td>
+              <td>255.255.255.252</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>Branch2</td>
+              <td>G0/0</td>
+              <td>10.11.48.113</td>
+              <td>255.255.255.248</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>Branch2</td>
+              <td>G0/1</td>
+              <td>10.11.48.1</td>
+              <td>255.255.255.192</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>Branch1</td>
+              <td>S0/0/0</td>
+              <td>10.11.48.122</td>
+              <td>255.255.255.252</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>Room-114</td>
+              <td>VLAN1</td>
+              <td>10.11.48.98</td>
+              <td>255.255.255.240</td>
+              <td>10.11.48.97</td>
+            </tr>
+            <tr>
+              <td>Room-279</td>
+              <td>VLAN1</td>
+              <td>10.11.48.66</td>
+              <td>255.255.255.244</td>
+              <td>10.11.48.65</td>
+            </tr>
+            <tr>
+              <td>Room-312</td>
+              <td>VLAN1</td>
+              <td>10.11.48.114</td>
+              <td>255.255.255.248</td>
+              <td>10.11.48.113</td>
+            </tr>
+            <tr>
+              <td>Room-407</td>
+              <td>VLAN1</td>
+              <td>10.11.48.2</td>
+              <td>255.255.255.192</td>
+              <td>10.11.48.1</td>
+            </tr>
+            <tr>
+              <td>PC-A</td>
+              <td>NIC</td>
+              <td>10.11.48.110</td>
+              <td>255.255.255.240</td>
+              <td>10.11.48.97</td>
+            </tr>
+            <tr>
+              <td>PC-B</td>
+              <td>NIC</td>
+              <td>10.11.48.94</td>
+              <td>255.255.255.244</td>
+              <td>10.11.48.65</td>
+            </tr>
+            <tr>
+              <td>PC-C</td>
+              <td>NIC</td>
+              <td>10.11.48.118</td>
+              <td>255.255.255.248</td>
+              <td>10.11.48.113</td>
+            </tr>
+            <tr>
+              <td>PC-D</td>
+              <td>NIC</td>
+              <td>10.11.48.62</td>
+              <td>255.255.255.192</td>
+              <td>10.11.48.1</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Step 1: Configure IP addressing on the Branch1 router LAN interfaces.</h3>
+        <span class="image main"><img src="images/lab28-2.png" alt="" /></span>
+        <h3>Step 2: Configure IP addressing on the Room-312, switch including the
+          default gateway.</h3>
+        <span class="image main"><img src="images/lab28-3.png" alt="" /></span>
+        <h3>Step 3: Configure IP addressing on PC-D, including the default gateway.</h3>
+        <span class="image main"><img src="images/lab28-4.png" alt="" /></span>
+        <h3>Step 4: Verify connectivity.</h3>
+        <span class="image main"><img src="images/lab28-5.png" alt="" /></span>
+        <hr>
+        <span class="image main"><img src="images/lab28-6.png" alt="" /></span>
+        <!-- Footer -->
+        <footer id="footer">
+          <div class="inner">
+            <section>
+              <h2>Get in touch</h2>
+              <form method="post" action="#">
+                <div class="fields">
+                  <div class="field half">
+                    <input type="text" name="name" id="name" placeholder="Name" />
+                  </div>
+                  <div class="field half">
+                    <input type="email" name="email" id="email" placeholder="Email" />
+                  </div>
+                  <div class="field">
+                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                  </div>
+                </div>
+                <ul class="actions">
+                  <li><input type="submit" value="Send" class="primary" /></li>
+                </ul>
+              </form>
+            </section>
+            <section>
+              <h2>Follow</h2>
+              <ul class="icons">
+                <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a>
+                </li>
+                <li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+                <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+                <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+              </ul>
+            </section>
+            <ul class="copyright">
+              <li>&copy; Untitled. All rights reserved</li>
+              <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </div>
+        </footer>
+
+      </div>
+
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
